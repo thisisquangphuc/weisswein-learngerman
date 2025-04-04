@@ -1,0 +1,52 @@
+,,,,,,,,,,,,,,
+Meaning,Infinity,ich,du,er,sie,es,wir,ihr,Sie,Check 1,Check 2,Check 3,Check 4,Check 5
+run,laufen,laufe,läufst,läuft,läuft,läuft,laufen,lauft,laufen,TRUE,TRUE,TRUE,FALSE,FALSE
+love,lieben,liebe,liebst,liebt,liebt,liebt,lieben,liebt,lieben,TRUE,FALSE,FALSE,FALSE,FALSE
+like,mögen,mag ,magst,mag,mag,mag,mögen,mögt,mögen,TRUE,TRUE,FALSE,FALSE,FALSE
+"have to, must",müssen,muss,musst,muss,muss,muss,müssen,müsst,müssen,TRUE,FALSE,FALSE,FALSE,FALSE
+want,wollen,will,willst,will,will,will,wollen,wollt,wollen,TRUE,FALSE,FALSE,FALSE,FALSE
+"May, be allowed to ...",dürfen,darf,darfst,darf,darf,darf,dürfen,dürft,dürfen,TRUE,FALSE,FALSE,FALSE,FALSE
+can,können,kann,kannst,kann,kann,kann,können,könnt,können,FALSE,FALSE,FALSE,FALSE,FALSE
+should,sollen,soll,sollst,soll,soll,soll,sollen,sollt,sollen,TRUE,FALSE,FALSE,FALSE,FALSE
+to go sw,gehen,gehe,gehst,geht,geht,geht,gehen,geht,gehen,TRUE,FALSE,FALSE,FALSE,FALSE
+would like to ...,möchten,möchte,möchtest,möchte,möchte,möchte,möchten,möchtet,möchten,TRUE,FALSE,FALSE,FALSE,FALSE
+drive,fahren,fahre,fährst,fährt,fährt,fährt,fahren,fahrt,fahren,TRUE,FALSE,FALSE,FALSE,FALSE
+"do sth, to make ",machen,mache,machst,macht,macht,macht,machen,macht,machen,TRUE,FALSE,FALSE,FALSE,FALSE
+to take,nehmen,nehme,nimmst,nimmt,nimmt,nimmt,nehmen,nehmt,nehmen,TRUE,FALSE,FALSE,FALSE,FALSE
+need sth/ sb,brauchen,brauche,brauchst,braucht,braucht,braucht,brauchen,braucht,brauchen,TRUE,FALSE,FALSE,FALSE,FALSE
+to help,helfen,helfe,hilfst,hilft,hilft,hilft,helfen,helft,helfen,TRUE,FALSE,FALSE,FALSE,FALSE
+to read sth,lesen,lese,liest,liest,liest,liest,lesen ,lest,lesen,TRUE,FALSE,FALSE,FALSE,FALSE
+"to wear, hold, carry sth",tragen,trage,trägst,trägt,trägt,trägt,tragen,tragt,tragen,TRUE,FALSE,FALSE,FALSE,FALSE
+"to search, look",suchen,suche,suchst,sucht,sucht,sucht,suchen,sucht,suchen,FALSE,FALSE,FALSE,FALSE,FALSE
+get rid of sth ,wegmachen,wegmache,wegmachst,wegmacht,wegmacht,wegmacht,wegmachen,wegmacht,wegmachet,FALSE,FALSE,FALSE,FALSE,FALSE
+send,schicken,schicke,schickst,schickt,schickt,schickt,schicken,schikt,schiken,FALSE,FALSE,FALSE,FALSE,FALSE
+to give,geben,gebe,gebst,gebt,gebt,gebt,geben,gebt,geben,FALSE,FALSE,FALSE,FALSE,FALSE
+to live,leben,lebe,lebst,lebt,lebt,lebt,leben,lebt,leben,FALSE,FALSE,FALSE,FALSE,FALSE
+to eat,essen,esse,isst,isst,isst,isst,essen,esst,essen,FALSE,FALSE,FALSE,FALSE,FALSE
+to invite,einladen,lade ein,lädst ein,lädt ein,lädt ein,lädt ein,laden ein,ladet ein,laden ein,FALSE,FALSE,FALSE,FALSE,FALSE
+"to say, express",sagen,sage,sagst,sagt,sagt,sagt,sagen,sagt,sagen,FALSE,FALSE,FALSE,FALSE,FALSE
+to speak,sprechen,spreche,sprichst,spricht,spricht,spricht,sprechen,sprecht,sprechen,FALSE,FALSE,FALSE,FALSE,FALSE
+"to receive, to get",bekommen,bekomme,bekommst,bekommt,bekommt,bekommt,bekommen,bekommt,becommen,FALSE,FALSE,FALSE,FALSE,FALSE
+to sit,sitzen,sitze,sitzst,sitzt,sitzt,sitzt,sitzen,sitzt,sitzen,FALSE,FALSE,FALSE,FALSE,FALSE
+"do act, sth in general",tun,tue,tust,tut,tut,tut,tun,tut,tun,FALSE,FALSE,FALSE,FALSE,FALSE
+to hurt,wehtun,tue weh,tust weh,tut weh,tut weh,tut weh,tun weh,tut weh,tun weh,FALSE,FALSE,FALSE,FALSE,FALSE
+"to clean up, tidy up",aufräumen,räume auf,räumst auf,räumt auf,räumt auf,räumt auf,räumen auf,räumt auf,räumen auf,FALSE,FALSE,FALSE,FALSE,FALSE
+to pull sth,ziehen,ziehe,ziehst,zieht,zieht,zieht,ziehen,zieht,ziehen,FALSE,FALSE,FALSE,FALSE,FALSE
+"to move (house), relocate",umziehen,ziehe um,ziehst um,zieht um,zieht um,zieht um,ziehen um,zieht um,ziehen um,FALSE,FALSE,FALSE,FALSE,FALSE
+to water sth,gießen,gieße,gießt,gießt,gießt,gießt,gießen,gießt,gießen,FALSE,FALSE,FALSE,FALSE,FALSE
+to close,aufmachen,mache auf,machst auf,macht auf,macht auf,macht auf,machen auf,macht auf,machen auf,FALSE,FALSE,FALSE,FALSE,FALSE
+to close (formal),schließen,schließe,schließt,schließt,schließt,schließt,schließen,schließt,schließen,FALSE,FALSE,FALSE,FALSE,FALSE
+to meet sb,treffen,treffe,triffst,trifft,trifft,trifft,treffen,trifft,treffen,FALSE,FALSE,FALSE,FALSE,FALSE
+"to stay, remain",bleiben,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+"get in, on board",einsteigen,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+"get out, get off",aussteigen,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to visit,besuchen,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to collect sth from sb,abholen,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to surf (web),surfen,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+"to clear, delete, erase, remove",löschen,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to chat with sb,chatten,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to download sth,herunterladen,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to turn/switch on,einschalten,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to turn/switch off,ausschalten,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+,,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+,,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE

@@ -6,6 +6,17 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		BE4D91662D9F31B400D5168F /* verbs.csv in Resources */ = {isa = PBXBuildFile; fileRef = BE4D91652D9F31B400D5168F /* verbs.csv */; };
+		BE718C3D2D9C37A30051C755 /* GerSentences.csv in Resources */ = {isa = PBXBuildFile; fileRef = BE718C352D9C37A30051C755 /* GerSentences.csv */; };
+		BE718C3E2D9C37A30051C755 /* nouns.csv in Resources */ = {isa = PBXBuildFile; fileRef = BE718C362D9C37A30051C755 /* nouns.csv */; };
+		BE718C3F2D9C37A30051C755 /* sentences.csv in Resources */ = {isa = PBXBuildFile; fileRef = BE718C372D9C37A30051C755 /* sentences.csv */; };
+		BE718C482D9C3AE40051C755 /* SwiftCSV in Frameworks */ = {isa = PBXBuildFile; productRef = BE718C472D9C3AE40051C755 /* SwiftCSV */; };
+		BE718C672D9F2F290051C755 /* Effects.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE718C652D9F29F90051C755 /* Effects.swift */; };
+		BE718C682D9F2F470051C755 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE718C662D9F2A360051C755 /* Extensions.swift */; };
+		BEE726AE2D9FFC53004BF9F1 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = BEE726AD2D9FFC53004BF9F1 /* ConfettiSwiftUI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		BE504ECB2D95A74700674150 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,9 +35,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BE4D91652D9F31B400D5168F /* verbs.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = verbs.csv; sourceTree = "<group>"; };
 		BE504EBA2D95A74500674150 /* weisswein.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weisswein.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE504ECA2D95A74700674150 /* weissweinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = weissweinTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE504ED42D95A74700674150 /* weissweinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = weissweinUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE718C352D9C37A30051C755 /* GerSentences.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = GerSentences.csv; sourceTree = "<group>"; };
+		BE718C362D9C37A30051C755 /* nouns.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = nouns.csv; sourceTree = "<group>"; };
+		BE718C372D9C37A30051C755 /* sentences.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = sentences.csv; sourceTree = "<group>"; };
+		BE718C652D9F29F90051C755 /* Effects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effects.swift; sourceTree = "<group>"; };
+		BE718C662D9F2A360051C755 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -45,6 +62,31 @@
 			path = weissweinUITests;
 			sourceTree = "<group>";
 		};
+		BE718C492D9F16DB0051C755 /* ViewModels */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		BE718C4A2D9F16F50051C755 /* Views */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BE718C4C2D9F170E0051C755 /* Core */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Core;
+			sourceTree = "<group>";
+		};
+		BE718C5B2D9F25430051C755 /* App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = App;
+			sourceTree = "<group>";
+		};
+		BE718C612D9F27EC0051C755 /* Models */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +94,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEE726AE2D9FFC53004BF9F1 /* ConfettiSwiftUI in Frameworks */,
+				BE718C482D9C3AE40051C755 /* SwiftCSV in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,10 +119,17 @@
 		BE504EB12D95A74500674150 = {
 			isa = PBXGroup;
 			children = (
+				BE718C5B2D9F25430051C755 /* App */,
+				BE718C4C2D9F170E0051C755 /* Core */,
+				BE718C612D9F27EC0051C755 /* Models */,
+				BE504EBB2D95A74500674150 /* Products */,
+				BE718C4B2D9F16FF0051C755 /* Resources */,
+				BE718C642D9F299E0051C755 /* Utils */,
+				BE718C492D9F16DB0051C755 /* ViewModels */,
+				BE718C4A2D9F16F50051C755 /* Views */,
 				BE504EBC2D95A74500674150 /* weisswein */,
 				BE504ECD2D95A74700674150 /* weissweinTests */,
 				BE504ED72D95A74700674150 /* weissweinUITests */,
-				BE504EBB2D95A74500674150 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,6 +141,26 @@
 				BE504ED42D95A74700674150 /* weissweinUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		BE718C4B2D9F16FF0051C755 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BE4D91652D9F31B400D5168F /* verbs.csv */,
+				BE718C352D9C37A30051C755 /* GerSentences.csv */,
+				BE718C362D9C37A30051C755 /* nouns.csv */,
+				BE718C372D9C37A30051C755 /* sentences.csv */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BE718C642D9F299E0051C755 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BE718C662D9F2A360051C755 /* Extensions.swift */,
+				BE718C652D9F29F90051C755 /* Effects.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -109,9 +180,16 @@
 			);
 			fileSystemSynchronizedGroups = (
 				BE504EBC2D95A74500674150 /* weisswein */,
+				BE718C492D9F16DB0051C755 /* ViewModels */,
+				BE718C4A2D9F16F50051C755 /* Views */,
+				BE718C4C2D9F170E0051C755 /* Core */,
+				BE718C5B2D9F25430051C755 /* App */,
+				BE718C612D9F27EC0051C755 /* Models */,
 			);
 			name = weisswein;
 			packageProductDependencies = (
+				BE718C472D9C3AE40051C755 /* SwiftCSV */,
+				BEE726AD2D9FFC53004BF9F1 /* ConfettiSwiftUI */,
 			);
 			productName = weisswein;
 			productReference = BE504EBA2D95A74500674150 /* weisswein.app */;
@@ -195,6 +273,10 @@
 			);
 			mainGroup = BE504EB12D95A74500674150;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				BE718C462D9C3A460051C755 /* XCRemoteSwiftPackageReference "SwiftCSV" */,
+				BEE726AC2D9FFC53004BF9F1 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BE504EBB2D95A74500674150 /* Products */;
 			projectDirPath = "";
@@ -212,6 +294,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE718C3D2D9C37A30051C755 /* GerSentences.csv in Resources */,
+				BE4D91662D9F31B400D5168F /* verbs.csv in Resources */,
+				BE718C3E2D9C37A30051C755 /* nouns.csv in Resources */,
+				BE718C3F2D9C37A30051C755 /* sentences.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +322,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE718C672D9F2F290051C755 /* Effects.swift in Sources */,
+				BE718C682D9F2F470051C755 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,19 +479,22 @@
 		BE504EDF2D95A74700674150 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = BottleDE;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"weisswein/Preview Content\"";
 				DEVELOPMENT_TEAM = 652439CMAX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -420,19 +511,22 @@
 		BE504EE02D95A74700674150 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = BottleDE;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"weisswein/Preview Content\"";
 				DEVELOPMENT_TEAM = 652439CMAX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -558,6 +652,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BE718C462D9C3A460051C755 /* XCRemoteSwiftPackageReference "SwiftCSV" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swiftcsv/SwiftCSV";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.0;
+			};
+		};
+		BEE726AC2D9FFC53004BF9F1 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI.git";
+			requirement = {
+				kind = exactVersion;
+				version = 2.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BE718C472D9C3AE40051C755 /* SwiftCSV */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BE718C462D9C3A460051C755 /* XCRemoteSwiftPackageReference "SwiftCSV" */;
+			productName = SwiftCSV;
+		};
+		BEE726AD2D9FFC53004BF9F1 /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BEE726AC2D9FFC53004BF9F1 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BE504EB22D95A74500674150 /* Project object */;
 }
