@@ -17,6 +17,8 @@ struct MainView: View {
                 .tabItem { Text("Nouns") }
             VerbsView()
                 .tabItem { Text("Verb") }
+            SentencePuzzleView()
+                .tabItem { Text("Learn") }
         }
 //        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
         .ignoresSafeArea(.all)  // Add this
