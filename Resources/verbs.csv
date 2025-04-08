@@ -48,5 +48,45 @@ to chat with sb,chatten,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
 to download sth,herunterladen,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
 to turn/switch on,einschalten,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
 to turn/switch off,ausschalten,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to become,werden,werde,wirst,wert,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to know (info mit Verbs),wissen,weiß,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to know (things or people),kennen,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to begin,anfangen,fange an,fängt an,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to call (by phone),anrufen,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to begin,beginnen,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to bring,bringen,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+"to think, to guess",denken,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to find,finden,finde,findst,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to fly,fliegen,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+"to please, like (focus on thing)",gefallen,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to write,schreiben,schreibe,schreibst,schreibt,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to swim,schwimmen ,schwimme,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to see,sehen,sehe,siehst,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to sing,singen,singe,singst,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to stand,stehen,stehe,stehst,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to drink,trinken,trinke,trinkst,trinkt,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+"to offer, bid",bieten,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+"to ask for sth, request",bitten,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to fly,braten,,brätst,brät,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to recommend,empfehlen,empfehle,empfielst,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to catch,fangen,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to fall,fallen,,fällst,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to enjoy,genießen,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to win,gewinnen,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+"to load, charge",laden,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to lie,liegen,,,liegt,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to mention,nennen,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to advise,raten,,rätst,rät,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+"to run (high speed, fast)",rennen,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to smell (neutral - positive smell),riechen,,,riecht,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+"to call out (directly, vocally)",rufen,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+"to rise, climb",steigen,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to die,sterben,,stirbst,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+"to stink, smell (negative, bad smell)",stinken,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to forget,vergessen,,vergisst,vergisst,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to lost,verlieren,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to grow,wachsen,,wächst,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to wash,waschen,,wäschst,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
+to throw,werfen,,wirfst,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
 ,,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE
 ,,,,,,,,,,FALSE,FALSE,FALSE,FALSE,FALSE

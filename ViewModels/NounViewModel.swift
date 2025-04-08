@@ -109,6 +109,8 @@ class NounViewModel: BaseViewModel<Noun>  {
         currentIndex = newIndex
         failedAttempts = 0 // Reset failed attempts
         
+        isCorrect = false
+        
         // Update history
         history.append(currentIndex)
         if history.count > 30 {
@@ -117,22 +119,32 @@ class NounViewModel: BaseViewModel<Noun>  {
     }
     
     func getCustomBackGroundColor() -> Color {
-        guard isCorrect else { return .yellow }
+        guard isCorrect else { return Color(hex: "#ECEDF3") } //gray white
         switch items[currentIndex].gender {
-        case "M": return Color(hex: "#FFA12F")  // DER: Orange or #FF9D0A" FB9901
-        case "F": return Color(hex: "#33488F")  // DIE: Blue
-        case "N": return Color(hex: "#D8A8D6")  // DAS: Purple - Violet
-        default: return .yellow
+            case "M": return Color(hex: "#FEB05C")  // DER: Orange or #FF9D0A" FB9901
+            case "F": return Color(hex: "#33488F")  // DIE: Blue
+            case "N": return Color(hex: "#D8A8D6")  // DAS: Purple - Violet
+            default: return .red
         }
     }
     
     func getCustomTextColor() -> Color {
-        guard isCorrect else { return .yellow }
+        guard isCorrect else { return Color(hex: "#ECEDF3") } //gray white
         switch items[currentIndex].gender {
-        case "M": return Color(hex: "#B73F00")  // DER: Orange or #FF9D0A" FB9901
-        case "F": return Color(hex: "#0CE5EA")  // DIE: Blue
-        case "N": return Color(hex: "#9E25A6")  // DAS: Purple - Violet
-        default: return .yellow
+            case "M": return Color(hex: "#B73F00")  // DER: Orange or #FF9D0A" FB9901
+            case "F": return Color(hex: "#0CE5EA")  // DIE: Blue
+            case "N": return Color(hex: "#9E25A6")  // DAS: Purple - Violet
+            default: return .red
+        }
+    }
+    
+    
+    func getConfettiColors() -> [Color] {
+        switch items[currentIndex].gender {
+            case "M": return [.red, .yellow]  // DER: Orange or #FF9D0A" FB9901
+            case "F": return [.green, .blue]  // DIE: Blue
+            case "N": return [.pink , .white] // DAS: Purple - Violet
+            default: return [.white, .white]
         }
     }
     

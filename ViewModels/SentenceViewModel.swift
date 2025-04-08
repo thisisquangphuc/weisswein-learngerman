@@ -67,7 +67,16 @@ class SenViewModel: BaseViewModel<Sentence> {
         return checkAnswer(correctAnswer: items[currentIndex].german)
     }
     
-    func nextSentence() {
+    func nextSentence() -> Bool{
+        guard !items.isEmpty else {
+            print("Error: No sentences loaded.")
+            return false
+        }
+        if items.count == 1 {
+            print("Error: No more sentences to be loaded.")
+            return false
+        }
+        
         userInput = ""
         var newIndex: Int
         
@@ -85,5 +94,6 @@ class SenViewModel: BaseViewModel<Sentence> {
         if history.count > 30 {
             history.removeFirst() // Maintain the last 30 words
         }
+        return true
     }
 }

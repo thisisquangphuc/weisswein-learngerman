@@ -33,8 +33,12 @@ class BaseViewModel<T: Identifiable>: ObservableObject {
     }
     
     func checkAnswer(correctAnswer: String) -> Bool {
-        let trimmedInput = userInput.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-        let trimmedAnswer = correctAnswer.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        let trimmedInput = userInput.trimmingCharacters(in: .whitespacesAndNewlines)
+            .lowercased()
+            .filter { $0.isLetter || $0.isNumber || $0.isWhitespace }
+        let trimmedAnswer = correctAnswer.trimmingCharacters(in: .whitespacesAndNewlines)
+            .lowercased()
+            .filter { $0.isLetter || $0.isNumber || $0.isWhitespace }
 
         let correct = trimmedInput == trimmedAnswer
         if correct {
@@ -62,5 +66,40 @@ class BaseViewModel<T: Identifiable>: ObservableObject {
             history.removeFirst()
         }
     }
+    
+//    func getDocumentsDirectory() -> URL? {
+//        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+//    }
+//    
+//    func saveCSV(fileURL: URL, fileType: String) {
+//        let fileManager = FileManager.default
+//        var targetFileName: String
+//
+//        switch fileType {
+//        case "Verb":
+//            targetFileName = "Verb.csv"
+//        case "Sentence":
+//            targetFileName = "Sentences.csv"
+//        case "Noun":
+//            targetFileName = "Nouns.csv"
+//        case "Note":
+//            targetFileName = "Notes.csv"
+//        default:
+//            print("Invalid file type selected")
+//            return
+//        }
+//
+//        if let destinationURL = getDocumentsDirectory()?.appendingPathComponent(targetFileName) {
+//            do {
+//                if fileManager.fileExists(atPath: destinationURL.path) {
+//                    try fileManager.removeItem(at: destinationURL)
+//                }
+//                try fileManager.copyItem(at: fileURL, to: destinationURL)
+//                loadCSV()  // Reload data after importing
+//            } catch {
+//                print("Error copying CSV file: \(error)")
+//            }
+//        }
+//    }
+    
 }
-

@@ -14,6 +14,7 @@
 		BE718C482D9C3AE40051C755 /* SwiftCSV in Frameworks */ = {isa = PBXBuildFile; productRef = BE718C472D9C3AE40051C755 /* SwiftCSV */; };
 		BE718C672D9F2F290051C755 /* Effects.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE718C652D9F29F90051C755 /* Effects.swift */; };
 		BE718C682D9F2F470051C755 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE718C662D9F2A360051C755 /* Extensions.swift */; };
+		BE7205602DA460E5002BD7AB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BE72055F2DA460DE002BD7AB /* README.md */; };
 		BEE726AE2D9FFC53004BF9F1 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = BEE726AD2D9FFC53004BF9F1 /* ConfettiSwiftUI */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		BE718C372D9C37A30051C755 /* sentences.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = sentences.csv; sourceTree = "<group>"; };
 		BE718C652D9F29F90051C755 /* Effects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effects.swift; sourceTree = "<group>"; };
 		BE718C662D9F2A360051C755 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		BE72055F2DA460DE002BD7AB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -119,6 +121,7 @@
 		BE504EB12D95A74500674150 = {
 			isa = PBXGroup;
 			children = (
+				BE72055F2DA460DE002BD7AB /* README.md */,
 				BE718C5B2D9F25430051C755 /* App */,
 				BE718C4C2D9F170E0051C755 /* Core */,
 				BE718C612D9F27EC0051C755 /* Models */,
@@ -294,6 +297,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE7205602DA460E5002BD7AB /* README.md in Resources */,
 				BE718C3D2D9C37A30051C755 /* GerSentences.csv in Resources */,
 				BE4D91662D9F31B400D5168F /* verbs.csv in Resources */,
 				BE718C3E2D9C37A30051C755 /* nouns.csv in Resources */,

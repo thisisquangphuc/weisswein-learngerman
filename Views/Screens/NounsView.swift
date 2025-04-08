@@ -10,6 +10,8 @@ import SwiftUI
 struct NounView: View {
     @StateObject var viewModel = NounViewModel()
     @State private var showingHint = false
+    
+    @State private var congratsTrigger: Int=0
 
     var body: some View {
         ZStack {
@@ -17,93 +19,80 @@ struct NounView: View {
                 .edgesIgnoringSafeArea([.top, .bottom, .leading, .trailing])
             
             ZStack {
-                
-                VStack {
-                    HStack {
-                        
-                        
-                        if viewModel.isCorrect {
-                            FireworkView()
-                                .frame(width: 10, height: 10)
-                                .opacity(viewModel.showFirework ? 1 : 0)
-                                .padding(.top, 40)
-                            
-                            VStack {
-                                Text(viewModel.items[viewModel.currentIndex].fullWord)
-                                    .font(.title)
-                                    .scaleEffect(viewModel.isCorrect ? 1.5 : 10)
-                                    .animation(.easeOut(duration: 0.5), value: viewModel.isCorrect)
-                                    .foregroundColor(viewModel.getCustomTextColor())
-                                    .padding(.top, 20)
-                                if viewModel.items[viewModel.currentIndex].plural != "" {
-                                    Text("die " + viewModel.items[viewModel.currentIndex].plural)
-                                        .font(.caption)
-                                        .scaleEffect(viewModel.isCorrect ? 1.5 : 5)
-                                        .animation(.easeIn(duration: 0.5), value: viewModel.isCorrect)
-                                        .foregroundColor(.white)
-                                        .padding()
-                                }
-                            }
-                            
-                            FireworkView()
-                                .frame(width: 10, height: 10)
-                                .opacity(viewModel.showFirework ? 1 : 0)
-                                .padding(.top, 40)
-                        }
-                    }
-                }
-                .edgesIgnoringSafeArea(.top)
-                .frame(maxHeight: .infinity, alignment: .top)
-                
-                Spacer()
-                
-                VStack {
-                    Text(viewModel.items.isEmpty ? "Loading..." : viewModel.items[viewModel.currentIndex].meaning)
-                        .font(.title)
-                        .multilineTextAlignment(.center)
-                        .padding(.bottom, 10)
-
+                ZStack {
+                 
                     VStack {
-                        TextField("Enter the correct noun", text: $viewModel.userInput, onCommit: {
-                            viewModel.isCorrect = viewModel.checkAnswer()
-                        })
-                        .modifier(Shake(animatableData: viewModel.shakeTrigger))
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        Text(viewModel.items[viewModel.currentIndex].fullWord)
+                            .font(.title)
+                            .bold()
+                            .scaleEffect(viewModel.isCorrect ? 1.5 : 10)
+                            .animation(.easeOut(duration: 0.4), value: viewModel.isCorrect)
+                            .foregroundColor(viewModel.getCustomTextColor())
+//                            .padding(.top, 20)
+                            .confettiCannon(trigger: $congratsTrigger, num: 100, colors: viewModel.getConfettiColors(), confettiSize: 7, rainHeight:300, openingAngle: Angle(degrees: 0), closingAngle: Angle(degrees: 180), radius: 500)
+                        if viewModel.items[viewModel.currentIndex].plural != "" {
+                            Text("die " + viewModel.items[viewModel.currentIndex].plural)
+                                .font(.system(size: 30))
+    //                                        .scaleEffect(viewModel.isCorrect ? 1.5 : 5)
+    //                                        .animation(.easeIn(duration: 0.5), value: viewModel.isCorrect)
+                                .foregroundColor(viewModel.getCustomTextColor())
+//                                .padding()
+                        }
+                        if viewModel.isCorrect {
+                            Divider()
+                                .background(Color.gray)
+                        }
+                    } // Full word - Plural
+//                    Spacer()
+//                .edgesIgnoringSafeArea(.top)
+                .padding(.top, 200)
+                .frame(maxHeight: .infinity, alignment: .top)
+                    VStack {
+                        Text(viewModel.items.isEmpty ? "Loading..." : viewModel.items[viewModel.currentIndex].meaning)
+                            .font(.title)
+                            .multilineTextAlignment(.center)
+                            .padding(.bottom, 10)
+                        VStack {
+                            TextField("Enter the correct noun", text: $viewModel.userInput, onCommit: {
+                                viewModel.isCorrect = viewModel.checkAnswer()
+                                callEffects()
+                            })
+                            .modifier(Shake(animatableData: viewModel.shakeTrigger))
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(10)
+                            .foregroundColor(.black)
+                            .textInputAutocapitalization(.never)
+                            .disableAutocorrection(true)
+                            .shadow(radius: 3)
+                        }
+                        Button("Next") {
+                            viewModel.nextNoun()
+                            viewModel.isCorrect = false
+                        }
                         .padding(10)
-                        .foregroundColor(.black)
-                        .textInputAutocapitalization(.never)
-                        .disableAutocorrection(true)
-//                        .modifier(Shake(animatableData: CGFloat(attempts)))
-                        
+                        .background(Color(hex: "#110AFF"))
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
                     }
-                    
-                    Button("Next") {
-                        viewModel.nextNoun()
-                        viewModel.isCorrect = false
-                    }
-                    .padding(10)
-                    .background(Color(hex: "#110AFF"))
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-              
-                    
-                }
+                } // Main Vstack
                 .frame(maxHeight: .infinity, alignment: .center)
 
                 Spacer()
             }
             .padding()
+            
 
             if viewModel.failedAttempts >= 1 {
                 Button(action: {
                     showingHint = true
                 }) {
-                    Text("Hint")
-                        .font(.caption)
+                    Label("Hint", systemImage: "lightbulb.fill")
                         .padding(5)
-                        .background(Color(hex: "#FF230A"))
+                        .background(Color.orange)
                         .foregroundColor(.white)
-                        .cornerRadius(5)
+//                        .shadow(radius: 5)
+                        .buttonStyle(.bordered)
+                        .clipShape(Capsule())
                 }
                 .position(x: UIScreen.main.bounds.width - 50, y: 30)
                 .alert(isPresented: $showingHint) {
@@ -114,7 +103,20 @@ struct NounView: View {
                     )
                 }
             }
+            
+            
+        }
+    }
+    
+    private func callEffects() {
+        if viewModel.isCorrect == true {
+            congratsTrigger += 1
         }
     }
 }
 
+struct NounPreviews: PreviewProvider {
+    static var previews: some View {
+        NounView()
+    }
+}

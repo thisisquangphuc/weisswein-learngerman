@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
+
         TabView {
             SentenceView()
                 .tabItem { Text("Sentences") }
@@ -16,9 +17,8 @@ struct MainView: View {
                 .tabItem { Text("Nouns") }
             VerbsView()
                 .tabItem { Text("Verb") }
-            
         }
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+//        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
         .ignoresSafeArea(.all)  // Add this
         .onAppear {
             // Set tab bar to be transparent when TabView loads
@@ -27,6 +27,7 @@ struct MainView: View {
             UITabBar.appearance().isTranslucent = true
             UITabBar.appearance().backgroundColor = .clear
         }
+
     }
 }
 
