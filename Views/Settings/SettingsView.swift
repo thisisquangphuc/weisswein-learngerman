@@ -15,15 +15,17 @@ struct SettingsView: View {
     @State private var showingFileImporter = false
     @State private var showingTypeSelection = false
     @State private var selectedFileType = ""
-
     
+    @State private var importMessage: String? = nil
+    @State private var showingImportSuccessAlert = false
+
     // Assuming the ViewModel tracks the number of correct answers and items
     @ObservedObject var senViewModel: SenViewModel
     @ObservedObject var nounViewModel: NounViewModel
     @ObservedObject var verbViewModel: VerbViewModel
     
     var body: some View {
-        NavigationView {
+//        NavigationView {
             Form {
                 Section(header: Text("System Info")) {
                     HStack {
@@ -138,12 +140,17 @@ struct SettingsView: View {
                                 print("No ViewModel found for selected file type.")
                             }
                             print("\(fileName) imported successfully to Resource/ and overwritten!")
+                            importMessage = "\(fileName) imported successfully!"
+                            showingImportSuccessAlert = true
                         } else {
                             print("Resource folder URL is invalid.")
                         }
                     } catch {
                         print("Failed to import file: \(error)")
                     }
+                }
+                .alert(isPresented: $showingImportSuccessAlert) {
+                    Alert(title: Text("Import Complete"), message: Text(importMessage ?? "Success"), dismissButton: .default(Text("OK")))
                 }
                 
                 Section {
@@ -174,11 +181,11 @@ struct SettingsView: View {
             }
             .navigationBarTitle("Settings", displayMode: .inline)
         }
-    }
+//    }
 }
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(senViewModel: SenViewModel(), nounViewModel: NounViewModel(), verbViewModel: VerbViewModel()) 
+        SettingsView(senViewModel: SenViewModel(), nounViewModel: NounViewModel(), verbViewModel: VerbViewModel())
     }
 }

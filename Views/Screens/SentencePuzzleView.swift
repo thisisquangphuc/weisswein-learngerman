@@ -19,11 +19,16 @@ struct SentencePuzzleView: View {
     @State private var len1: CGFloat=0
     @State private var len2: CGFloat=0
     
+    @State private var effectTrigger: Int=0
+    @State private var wrongTrigger = false
+    
     var body: some View {
         VStack(spacing: 20) {
             Text(viewModel.items[viewModel.currentIndex].english)
-                .font(.title3)
+                .font(.system(size: 36))
+                .multilineTextAlignment(.center)
                 .padding()
+                .foregroundColor(wrongTrigger ? .red : .black)
             
             // Answer line
             VStack {
@@ -75,14 +80,15 @@ struct SentencePuzzleView: View {
             //            .position(x: 5, y: 5)
             .background(Color.gray.opacity(0.1))
             .cornerRadius(20)
+                
         }
 
             // Word bank
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10), count: 3), spacing: 12) {
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 1), count: 3), spacing: 10) {
                 ForEach(shuffledWords, id: \.self) { word in
                     Text(word)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 6)
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 8)
                         .background(Color.gray.opacity(0.3))
                         .cornerRadius(10)
                         .onTapGesture {
@@ -105,44 +111,63 @@ struct SentencePuzzleView: View {
             }
             .padding()
             .animation(nil, value: shuffledWords)
+            .confettiCannon(trigger: $effectTrigger, num: 50, rainHeight:100, openingAngle: Angle(degrees: 0), closingAngle: Angle(degrees: 180), radius: 300, hapticFeedback: true)
 
-            if showIncorrect {
-                Text("❌ Try again!")
-                    .foregroundColor(.red)
-            }
+//            if showIncorrect {
+//                wrongTrigger = true
+//            }
 
             HStack(spacing: 20) {
-                Button("Check") {
+                Button(action: {
                     let correct = viewModel.items[viewModel.currentIndex].german
                     let trimmedCorrect = correct.trimmingCharacters(in: .whitespacesAndNewlines)
                     let sanitizedCorrect = trimmedCorrect.components(separatedBy: .whitespaces)
+                    selectedWords = selectedWordsLine1 + selectedWordsLine2;
                     if sanitizedCorrect == selectedWords {
                         showIncorrect = false
+                        wrongTrigger = false
+                        effectTrigger += 1
                     } else {
                         showIncorrect = true
-                        withAnimation {
-                            shuffledWords.append(contentsOf: selectedWords)
-                            selectedWords.removeAll()
-                            shuffledWords.shuffle()
-                        }
+                        wrongTrigger = true
+//                        withAnimation {
+//                            shuffledWords.append(contentsOf: selectedWords)
+//                            selectedWords.removeAll()
+//                            shuffledWords.shuffle()
+//                        }
                     }
+                }) {
+                    Label("Check", systemImage: "checkmark.arrow.trianglehead.counterclockwise")
                 }
-                .padding()
-                .background(Color.green)
-                .foregroundColor(.white)
-                .cornerRadius(10)
-
-                Button("Next") {
+                .font(.system(size:20))
+                .padding(.vertical, 10)
+                .padding(.horizontal, 20)
+                .background(Color(hex: "F5F5F5"))
+                .foregroundColor(.green)
+    
+                .clipShape(Capsule())
+                
+                Button(action: {
                     if viewModel.nextSentence() {
                         resetPuzzle()
                         showIncorrect = false
+                        wrongTrigger = false
                         len1 = 0
                     }
+                }) {
+                    Label("Next", systemImage: "arrow.right.circle.fill")
+                    
                 }
-                .padding()
-                .background(Color.blue)
-                .foregroundColor(.white)
-                .cornerRadius(10)
+                .font(.system(size:20))
+                .padding(.vertical, 10)
+                .padding(.horizontal, 20)
+                .background(Color(hex: "F5F5F5"))
+                //                    .buttonStyle(.bordered)
+                .foregroundColor(.black)
+                //                    .frame(width: 200, height: 200)
+                //                    .cornerRadius(50)
+                .clipShape(Capsule())
+                
             }
             .padding(.top)
         }

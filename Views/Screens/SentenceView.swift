@@ -16,11 +16,12 @@ struct SentenceView: View {
     @State private var selectedFileType = ""
     @State private var selectedOption = 0
     @State private var showingNextAlert = false
+    @State private var showingSettings = false
     
     private let options = ["Option 1", "Option 2", "Option 3", "Option 4", "Option 5"]
     
     var body: some View {
-        NavigationView {
+//        NavigationView {
             
             ZStack {
                 // Background color changes based on correctness
@@ -143,19 +144,37 @@ struct SentenceView: View {
                 .padding()
                 
                 ZStack {
-                    NavigationLink(destination: SettingsView(
-                        senViewModel: SenViewModel(),
-                        nounViewModel: NounViewModel(),
-                        verbViewModel: VerbViewModel()
-                    )) {
+//                    NavigationLink(destination: SettingsView(
+//                        senViewModel: SenViewModel(),
+//                        nounViewModel: NounViewModel(),
+//                        verbViewModel: VerbViewModel()
+//                    )) {
+//                        Image(systemName: "line.3.horizontal")
+//                            .padding(8)
+//                            .font(.system(size: 30))
+////                            .background(Color.green)
+//                            .foregroundColor(.black)
+////                            .cornerRadius(10)
+//                    }
+//                    .position(x: 35, y: 60)
+                    Button(action: {
+                        showingSettings = true
+                    }) {
                         Image(systemName: "line.3.horizontal")
-                            .padding(8)
                             .font(.system(size: 30))
-//                            .background(Color.green)
+                            .padding(8)
+                            .background(Color.white.opacity(0.9))
                             .foregroundColor(.black)
-//                            .cornerRadius(10)
+                            .clipShape(Circle())
                     }
-                    .position(x: 35, y: 60)
+                    .sheet(isPresented: $showingSettings) {
+                        SettingsView(
+                            senViewModel: SenViewModel(),
+                            nounViewModel: NounViewModel(),
+                            verbViewModel: VerbViewModel()
+                        )
+                    }
+                    .position(x: 40, y: 60)
                     Divider()
                         .background(Color.gray)
                         .position(x: 200, y:85)
@@ -256,7 +275,7 @@ struct SentenceView: View {
                 
             }
         }
-    }
+//    }
     
     
 }
