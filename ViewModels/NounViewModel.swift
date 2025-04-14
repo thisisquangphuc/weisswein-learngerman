@@ -44,6 +44,7 @@ class NounViewModel: BaseViewModel<Noun>  {
                 let columns = line.components(separatedBy: ",")
                 if columns.count > 1 {
                     return Noun(meaning: columns[6].trimmingCharacters(in: .whitespacesAndNewlines),
+                                singWord: columns[1].trimmingCharacters(in: .whitespacesAndNewlines),
                                 fullWord: columns[4].trimmingCharacters(in: .whitespacesAndNewlines),
                                 plural: columns[5].trimmingCharacters(in: .whitespacesAndNewlines),
                                 gender: columns[2].trimmingCharacters(in: .whitespacesAndNewlines))
@@ -63,6 +64,7 @@ class NounViewModel: BaseViewModel<Noun>  {
                 if row.count > 6 { // Ensure enough columns exist
                     return Noun(
                         meaning: row[6].trimmingCharacters(in: .whitespacesAndNewlines),
+                        singWord: row[1].trimmingCharacters(in: .whitespacesAndNewlines),
                         fullWord: row[4].trimmingCharacters(in: .whitespacesAndNewlines),
                         plural: row[5].trimmingCharacters(in: .whitespacesAndNewlines),
                         gender: row[2].trimmingCharacters(in: .whitespacesAndNewlines)
@@ -119,7 +121,7 @@ class NounViewModel: BaseViewModel<Noun>  {
     }
     
     func getCustomBackGroundColor() -> Color {
-        guard isCorrect else { return Color(hex: "#ECEDF3") } //gray white
+        guard isCorrect else { return .white } //gray white
         switch items[currentIndex].gender {
             case "M": return Color(hex: "#FEB05C")  // DER: Orange or #FF9D0A" FB9901
             case "F": return Color(hex: "#33488F")  // DIE: Blue
@@ -129,7 +131,7 @@ class NounViewModel: BaseViewModel<Noun>  {
     }
     
     func getCustomTextColor() -> Color {
-        guard isCorrect else { return Color(hex: "#ECEDF3") } //gray white
+        guard isCorrect else { return .white } //gray white
         switch items[currentIndex].gender {
             case "M": return Color(hex: "#B73F00")  // DER: Orange or #FF9D0A" FB9901
             case "F": return Color(hex: "#0CE5EA")  // DIE: Blue
@@ -153,5 +155,6 @@ class NounViewModel: BaseViewModel<Noun>  {
             shakeTrigger += 1
         }
     }
+    
     
 }

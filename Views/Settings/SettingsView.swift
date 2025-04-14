@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import UIKit
+import Foundation
 
 struct SettingsView: View {
     @State private var soundEnabled = true
@@ -24,6 +26,11 @@ struct SettingsView: View {
     @ObservedObject var nounViewModel: NounViewModel
     @ObservedObject var verbViewModel: VerbViewModel
     
+    @State private var iOSVersion = ""
+    @State private var deviceModel = ""
+    
+    @State private var lastUpdatedDate: Date? = nil
+    
     var body: some View {
 //        NavigationView {
             Form {
@@ -31,19 +38,22 @@ struct SettingsView: View {
                     HStack {
                         Text("App Version")
                         Spacer()
-                        Text("1.0.0") // Replace with actual version if needed
+                        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "N/A"
+                        Text(appVersion) // Replace with actual version if needed
                             .foregroundColor(.gray)
                     }
                     HStack {
                         Text("Device Info")
                         Spacer()
-                        Text("iPhone 12 - iOS 15") // Update with real device info
+                        let iOSVersion = UIDevice.current.systemVersion
+                        let deviceModel = UIDevice.current.model
+                        Text(deviceModel + " - " + iOSVersion) // Update with real device info
                             .foregroundColor(.gray)
                     }
                     HStack {
                         Text("Last Updated")
                         Spacer()
-                        Text("March 2025")
+                        Text(formattedDate(lastUpdatedDate))
                             .foregroundColor(.gray)
                     }
                 }
@@ -52,26 +62,22 @@ struct SettingsView: View {
                     HStack {
                         Text("Correct Answers")
                         Spacer()
-//                        Text("\(viewModel.correctAnswersCount)") // Bind with the actual correct answers count from ViewModel
-                       Text("10")
+//                        Text("\(SentencePuzzleView().correct)") // Bind with the actual correct answers count from ViewModel
                     }
                     HStack {
                         Text("Sentences")
                         Spacer()
-//                        Text("\(viewModel.sentencesCount)") // Bind with actual sentences count from ViewModel
-                        Text("10")
+                        Text("\(senViewModel.correctCnt)") // Bind with actual sentences count from ViewModel
                     }
                     HStack {
                         Text("Verbs")
                         Spacer()
-//                        Text("\(viewModel.verbsCount)") // Bind with actual verbs count from ViewModel
-                        Text("10")
+                        Text("\(verbViewModel.correctCnt)") // Bind with actual verbs count from ViewModel
                     }
                     HStack {
                         Text("Nouns")
                         Spacer()
-//                        Text("\(viewModel.nounsCount)") // Bind with actual nouns count from ViewModel
-                        Text("10")
+                        Text("\(nounViewModel.correctCnt)") // Bind with actual nouns count from ViewModel
                     }
                 }
                 
@@ -142,6 +148,7 @@ struct SettingsView: View {
                             print("\(fileName) imported successfully to Resource/ and overwritten!")
                             importMessage = "\(fileName) imported successfully!"
                             showingImportSuccessAlert = true
+                            lastUpdatedDate = Date()
                         } else {
                             print("Resource folder URL is invalid.")
                         }
@@ -180,8 +187,39 @@ struct SettingsView: View {
                 }
             }
             .navigationBarTitle("Settings", displayMode: .inline)
+            .onAppear {
+                if UserDefaults.standard.object(forKey: "lastUpdatedDate") == nil {
+                    let now = Date()
+                    UserDefaults.standard.set(now, forKey: "lastUpdatedDate")
+                    lastUpdatedDate = now
+                } else {
+                    lastUpdatedDate = UserDefaults.standard.object(forKey: "lastUpdatedDate") as? Date
+                }
+            }
         }
 //    }
+    
+    func getDeviceModel() {
+        iOSVersion = UIDevice.current.systemVersion
+        var systemInfo = utsname()
+        uname(&systemInfo)
+        let modelCode = withUnsafePointer(to: &systemInfo.machine) {
+            $0.withMemoryRebound(to: CChar.self, capacity: 1) {
+                String(validatingUTF8: $0) ?? "Unknown"
+            }
+        }
+        deviceModel = modelCode
+    }
+    
+    func formattedDate(_ date: Date?) -> String {
+        guard let date = date else { return "Not available" }
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter.string(from: date)
+    }
+    
+    
 }
 
 struct SettingsView_Previews: PreviewProvider {

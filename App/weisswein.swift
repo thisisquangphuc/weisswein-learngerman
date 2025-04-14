@@ -19,10 +19,6 @@ struct MainView: View {
                 .tabItem { Text("Verb") }
             SentencePuzzleView()
                 .tabItem { Text("Learn") }
-//
-//            SettingsView(senViewModel: SenViewModel(), nounViewModel: NounViewModel(), verbViewModel: VerbViewModel())
-//                .tabItem { Text("seting") }
-            
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
         .ignoresSafeArea(.all)  // Add this

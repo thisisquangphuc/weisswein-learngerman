@@ -10,16 +10,42 @@ struct VerbsView: View {
     
     @State private var finalCongrats: Int = 0
     @State private var confettiTrigger: Int = 0
+    
+    @State private var showingSettings = false
 
     let pronouns = ["Infinitive", "Ich", "Du", "Er/Sie/Es", "Ihr"]
 
     var body: some View {
         ZStack {
             // Title Bar
-            Color(Color(hex: "#E7FCFF"))
-                .edgesIgnoringSafeArea([.top, .bottom, .leading, .trailing])
+//            Color(Color(hex: "#E7FCFF"))
+//                .edgesIgnoringSafeArea([.top, .bottom, .leading, .trailing])
+            ZStack {
+                Button(action: {
+                    showingSettings = true
+                }) {
+                    Image(systemName: "line.3.horizontal")
+                        .font(.system(size: 30))
+                        .padding(8)
+                        .background(Color.white.opacity(0.9))
+                        .foregroundColor(.black)
+                        .clipShape(Circle())
+                }
+                .sheet(isPresented: $showingSettings) {
+                    SettingsView(
+                        senViewModel: SenViewModel(),
+                        nounViewModel: NounViewModel(),
+                        verbViewModel: VerbViewModel()
+                    )
+                }
+                .position(x: 40, y: 15)
+                Divider()
+                    .background(Color.gray)
+                    .position(x: 200, y:35)
+            }
             
             ZStack {
+                
                 
                 VStack {
 
@@ -30,8 +56,8 @@ struct VerbsView: View {
                         .padding()
                         .frame(maxWidth: .infinity)
                         .background(
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(Color(hex: "#FFFBC4")) // Background color of the rectangle
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(Color(hex: "#F5F5F5")) // Background color of the rectangle
                                 .shadow(color: .gray, radius: 3, x: 0, y: 0.5) // Sharp shadow effect
                         )
                         .confettiCannon(trigger: $confettiTrigger, confettiSize: 7, rainHeight: 500, repetitions: 1, hapticFeedback: true)
@@ -48,28 +74,34 @@ struct VerbsView: View {
                                     .padding(.leading, 30)
                                 
                                 TextField("Enter \(pronouns[index]) form", text: $userInputs[index])
-                                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                                    .padding(.top, 2)
+                                    .padding(5)
                                     .autocapitalization(.none)
                                     .disableAutocorrection(true)
-                                    .cornerRadius(5)
-                                    .padding(.trailing, 10)
+                                    .padding(.leading, 10 )
                                     .foregroundColor(isCorrect[index] == nil ? Color.black : (isCorrect[index]! ? Color.green: Color.red))
                                     .onSubmit {
                                         checkAnswer(for: index)
                                     }
+                                    .foregroundColor(.black)
+                                    .textInputAutocapitalization(.never)
+                                    .background(Color(hex: "F5F5F5")) //CHatGPT IOS app color
+                                    .disableAutocorrection(true)
+                                    .cornerRadius(15)
+                                    .frame(maxWidth: 200)
                             }
                             .confettiCannon(trigger: $finalCongrats, num: 50, openingAngle: Angle(degrees: 0), closingAngle: Angle(degrees: 360), radius: 300, hapticFeedback: true)
                         }
                         .padding(.top, 10)
                         .padding(.bottom, 10)
+                        .padding(.trailing, 10)
                     }
                     .background(
-                        RoundedRectangle(cornerRadius: 15)
+                        RoundedRectangle(cornerRadius: 20)
                             .fill(Color.white) // Background color of the rectangle
                             .shadow(color: .gray, radius: 3, x: 0, y: 0) // Sharp shadow effect
                     )
                     .padding()
+//                    .padding(.trailing, 100)
 
                     Button(action: {
                         viewModel.nextVerb()
@@ -79,8 +111,13 @@ struct VerbsView: View {
                     }) {
                         Label("Next Verb", systemImage: "arrow.right.circle.fill")
                     }
-                    .buttonStyle(.bordered)
+                    .font(.system(size:20))
+                    .padding(.vertical, 10)
+                    .padding(.horizontal, 20)
+                    .background(Color(hex: "F5F5F5"))
+                    .foregroundColor(.black)
                     .clipShape(Capsule())
+                    
                 }
                 
                 
@@ -97,7 +134,7 @@ struct VerbsView: View {
                             .buttonStyle(.bordered)
                             .clipShape(Capsule())
                     }
-                    .position(x: UIScreen.main.bounds.width - 75, y: 30) // Position in top-right corner
+                    .position(x: UIScreen.main.bounds.width - 60, y: 0) // Position in top-right corner
 //                        .frame(maxWidth: .infinity, alignment: .trailing)
                     .alert(isPresented: $showingHint) {
                         let current = viewModel.items[viewModel.currentIndex]

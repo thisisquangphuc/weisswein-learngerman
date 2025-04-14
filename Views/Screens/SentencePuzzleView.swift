@@ -22,158 +22,228 @@ struct SentencePuzzleView: View {
     @State private var effectTrigger: Int=0
     @State private var wrongTrigger = false
     
+    @State private var checked = false
+    @State private var showingSettings = false
     var body: some View {
-        VStack(spacing: 20) {
-            Text(viewModel.items[viewModel.currentIndex].english)
-                .font(.system(size: 36))
-                .multilineTextAlignment(.center)
-                .padding()
-                .foregroundColor(wrongTrigger ? .red : .black)
-            
-            // Answer line
-            VStack {
-            HStack {
-                ForEach(selectedWordsLine1, id: \.self) { word in
-                    Text(word)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                    //                        .padding(10)
-                        .background(Color.blue.opacity(0.2))
-                        .cornerRadius(10)
-                        .onTapGesture {
-                            if len1 < 200 || selectedWordsLine2.isEmpty {
-                                if let index = selectedWordsLine1.firstIndex(of: word) {
-                                    let removed = selectedWordsLine1.remove(at: index)
-                                    len1 = len1 - getWordWidth(word: removed) - getWordWidth(word: " ")
-                                    print(len1)
-                                    shuffledWords.append(removed)
-                                    shuffledWords.shuffle()
-                                }
-                            }
-                        }
-                }
-            }
-            HStack {
-                ForEach(selectedWordsLine2, id: \.self) { word in
-                    Text(word)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                    //                        .padding(10)
-                        .background(Color.blue.opacity(0.2))
-                        .cornerRadius(10)
-                        .onTapGesture {
-                            if !selectedWordsLine2.isEmpty {
-                                if let index = selectedWordsLine2.firstIndex(of: word) {
-                                    let removed = selectedWordsLine2.remove(at: index)
-                                    len1 = len1 - getWordWidth(word: removed) - getWordWidth(word: " ")
-                                    print(len1)
-                                    shuffledWords.append(removed)
-                                    shuffledWords.shuffle()
-                                }
-                            }
-                            
-                        }
-                }
-            }
-            //            .padding(.vertical, 40)
-            //            .padding(.horizontal, 190)
-            //            .position(x: 5, y: 5)
-            .background(Color.gray.opacity(0.1))
-            .cornerRadius(20)
-                
-        }
-
-            // Word bank
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 1), count: 3), spacing: 10) {
-                ForEach(shuffledWords, id: \.self) { word in
-                    Text(word)
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 8)
-                        .background(Color.gray.opacity(0.3))
-                        .cornerRadius(10)
-                        .onTapGesture {
-                            if let index = shuffledWords.firstIndex(of: word) {
-                                let removed = shuffledWords.remove(at: index)
-                                
-                                len1 = len1 + getWordWidth(word: removed) + getWordWidth(word: " ")
-                                print("len 1:", len1)
-                                if len1 < 200 {
-//                                    selectedWords.append(removed)
-                                    selectedWordsLine1.append(removed)
-                                } else {
-//                                    selectedWords.append(removed)
-                                    selectedWordsLine2.append(removed)
-                                }
-                                UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                            }
-                        }
-                }
-            }
-            .padding()
-            .animation(nil, value: shuffledWords)
-            .confettiCannon(trigger: $effectTrigger, num: 50, rainHeight:100, openingAngle: Angle(degrees: 0), closingAngle: Angle(degrees: 180), radius: 300, hapticFeedback: true)
-
-//            if showIncorrect {
-//                wrongTrigger = true
-//            }
-
-            HStack(spacing: 20) {
+        ZStack() {
+            ZStack {
                 Button(action: {
-                    let correct = viewModel.items[viewModel.currentIndex].german
-                    let trimmedCorrect = correct.trimmingCharacters(in: .whitespacesAndNewlines)
-                    let sanitizedCorrect = trimmedCorrect.components(separatedBy: .whitespaces)
-                    selectedWords = selectedWordsLine1 + selectedWordsLine2;
-                    if sanitizedCorrect == selectedWords {
-                        showIncorrect = false
-                        wrongTrigger = false
-                        effectTrigger += 1
-                    } else {
-                        showIncorrect = true
-                        wrongTrigger = true
-//                        withAnimation {
-//                            shuffledWords.append(contentsOf: selectedWords)
-//                            selectedWords.removeAll()
-//                            shuffledWords.shuffle()
-//                        }
-                    }
+                    showingSettings = true
                 }) {
-                    Label("Check", systemImage: "checkmark.arrow.trianglehead.counterclockwise")
+                    Image(systemName: "line.3.horizontal")
+                        .font(.system(size: 30))
+                        .padding(8)
+                        .background(Color.white.opacity(0.9))
+                        .foregroundColor(.black)
+                        .clipShape(Circle())
                 }
-                .font(.system(size:20))
-                .padding(.vertical, 10)
-                .padding(.horizontal, 20)
-                .background(Color(hex: "F5F5F5"))
-                .foregroundColor(.green)
-    
-                .clipShape(Capsule())
+                .sheet(isPresented: $showingSettings) {
+                    SettingsView(
+                        senViewModel: SenViewModel(),
+                        nounViewModel: NounViewModel(),
+                        verbViewModel: VerbViewModel()
+                    )
+                }
+                .position(x: 40, y: 15)
+                Divider()
+                    .background(Color.gray)
+                    .position(x: 200, y:35)
+            }
+            VStack(spacing: 20) {
+                Text(viewModel.items[viewModel.currentIndex].english)
+                    .font(.system(size: 36))
+                    .multilineTextAlignment(.center)
+                    .padding()
+                    .foregroundColor(wrongTrigger ? .red : .black)
                 
-                Button(action: {
-                    if viewModel.nextSentence() {
-                        resetPuzzle()
-                        showIncorrect = false
-                        wrongTrigger = false
-                        len1 = 0
+                // Answer line
+                VStack {
+                    HStack {
+                        ForEach(selectedWordsLine1, id: \.self) { word in
+                            Text(word)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 6)
+                            //                        .padding(10)
+                                .background(Color.blue.opacity(0.2))
+                                .cornerRadius(10)
+                                .onTapGesture {
+                                    if len1 < 200 || selectedWordsLine2.isEmpty {
+                                        if let index = selectedWordsLine1.firstIndex(of: word) {
+                                            let removed = selectedWordsLine1.remove(at: index)
+                                            len1 = len1 - getWordWidth(word: removed) - getWordWidth(word: " ")
+                                            print(len1)
+                                            //                                    shuffledWords.append(removed)
+                                            //                                    shuffledWords.shuffle()
+                                        }
+                                    }
+                                }
+                        }
                     }
-                }) {
-                    Label("Next", systemImage: "arrow.right.circle.fill")
+                    HStack {
+                        ForEach(selectedWordsLine2, id: \.self) { word in
+                            Text(word)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 6)
+                            //                        .padding(10)
+                                .background(Color.blue.opacity(0.2))
+                                .cornerRadius(10)
+                                .onTapGesture {
+                                    if !selectedWordsLine2.isEmpty {
+                                        if let index = selectedWordsLine2.firstIndex(of: word) {
+                                            let removed = selectedWordsLine2.remove(at: index)
+                                            len1 = len1 - getWordWidth(word: removed) - getWordWidth(word: " ")
+                                            print(len1)
+                                            //                                    shuffledWords.append(removed)
+                                            //                                    shuffledWords.shuffle()
+                                        }
+                                    }
+                                    
+                                }
+                        }
+                    }
+                    //            .padding(.vertical, 40)
+                    //            .padding(.horizontal, 190)
+                    //            .position(x: 5, y: 5)
+                    
                     
                 }
-                .font(.system(size:20))
-                .padding(.vertical, 10)
-                .padding(.horizontal, 20)
-                .background(Color(hex: "F5F5F5"))
-                //                    .buttonStyle(.bordered)
-                .foregroundColor(.black)
-                //                    .frame(width: 200, height: 200)
-                //                    .cornerRadius(50)
-                .clipShape(Capsule())
+                .background(Color.gray.opacity(0.1))
+                .cornerRadius(20)
                 
+                // Word bank
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 1), count: 3), spacing: 10) {
+                    ForEach(shuffledWords, id: \.self) { word in
+                        Text(word)
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 8)
+                            .background(Color.gray.opacity(0.3))
+                            .foregroundColor(
+                                selectedWordsLine1.contains(word) || selectedWordsLine2.contains(word)
+                                ? Color.gray
+                                : Color.black
+                            )
+                            .cornerRadius(10)
+                            .onTapGesture {
+                                if let index = shuffledWords.firstIndex(of: word) {
+                                    //                                let removed = shuffledWords.remove(at: index)
+                                    
+                                    len1 = len1 + getWordWidth(word: word) + getWordWidth(word: " ")
+                                    print("len 1:", len1)
+                                    if len1 < 200 {
+                                        //                                    selectedWords.append(removed)
+                                        selectedWordsLine1.append(word)
+                                    } else {
+                                        //                                    selectedWords.append(removed)
+                                        selectedWordsLine2.append(word)
+                                    }
+                                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                                }
+                            }
+                    }
+                }
+                .padding()
+                .animation(nil, value: shuffledWords)
+                .confettiCannon(trigger: $effectTrigger, num: 50, rainHeight:100, openingAngle: Angle(degrees: 0), closingAngle: Angle(degrees: 180), radius: 300, hapticFeedback: true)
+                
+                //            if showIncorrect {
+                //                wrongTrigger = true
+                //            }
+                
+                HStack(spacing: 20) {
+                    Button(action: {
+                        let correct = viewModel.items[viewModel.currentIndex].german
+                        let trimmedCorrect = correct.trimmingCharacters(in: .whitespacesAndNewlines)
+                        let sanitizedCorrect = trimmedCorrect.components(separatedBy: .whitespaces)
+                        selectedWords = selectedWordsLine1 + selectedWordsLine2
+                        checked = true
+                        if checkAnswer(userInput: selectedWords.joined(separator: " ")) {
+                            showIncorrect = false
+                            wrongTrigger = false
+                            effectTrigger += 1
+                        } else {
+                            showIncorrect = true
+                            wrongTrigger = true
+                            //                        withAnimation {
+                            //                            shuffledWords.append(contentsOf: selectedWords)
+                            //                            selectedWords.removeAll()
+                            //                            shuffledWords.shuffle()
+                            //                        }
+                        }
+                    }) {
+                        Label("Check", systemImage: "checkmark.arrow.trianglehead.counterclockwise")
+                    }
+                    .font(.system(size:20))
+                    .padding(.vertical, 10)
+                    .padding(.horizontal, 20)
+                    .background(Color(hex: "F5F5F5"))
+                    .foregroundColor(.green)
+                    
+                    .clipShape(Capsule())
+                    
+                    Button(action: {
+                        
+                        if !checked {
+                            selectedWords = selectedWordsLine1 + selectedWordsLine2
+                            if checkAnswer(userInput: selectedWords.joined(separator: " ")) {
+                                showIncorrect = false
+                                wrongTrigger = false
+                                effectTrigger += 1
+                            } else {
+                                showIncorrect = true
+                                wrongTrigger = true
+                            }
+                            checked = true
+                        } else {
+                            if viewModel.nextSentence() {
+                                resetPuzzle()
+                                showIncorrect = false
+                                wrongTrigger = false
+                                len1 = 0
+                            }
+                            checked = false
+                        }
+                        
+                    }) {
+                        Label("Next", systemImage: "arrow.right.circle.fill")
+                        
+                    }
+                    .font(.system(size:20))
+                    .padding(.vertical, 10)
+                    .padding(.horizontal, 20)
+                    .background(Color(hex: "F5F5F5"))
+                    //                    .buttonStyle(.bordered)
+                    .foregroundColor(.black)
+                    //                    .frame(width: 200, height: 200)
+                    //                    .cornerRadius(50)
+                    .clipShape(Capsule())
+                    
+                }
+                .padding(.top)
             }
-            .padding(.top)
+            .onAppear {
+                resetPuzzle()
+            }
         }
-        .onAppear {
-            resetPuzzle()
+    }
+    
+    func checkAnswer(userInput: String) -> Bool {
+        let correctAns = viewModel.items[viewModel.currentIndex].german
+        
+        let trimmedInput = userInput.trimmingCharacters(in: .whitespacesAndNewlines)
+            .lowercased()
+            .filter { $0.isLetter || $0.isNumber || $0.isWhitespace }
+        let trimmedAnswer = correctAns.trimmingCharacters(in: .whitespacesAndNewlines)
+            .lowercased()
+            .filter { $0.isLetter || $0.isNumber || $0.isWhitespace }
+
+        let correct = trimmedInput == trimmedAnswer
+        if correct {
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.success)
+//            failedAttempts = 0
+        } else {
         }
+        return correct
     }
 
     func resetPuzzle() {

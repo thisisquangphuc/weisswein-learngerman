@@ -16,6 +16,8 @@ class BaseViewModel<T: Identifiable>: ObservableObject {
     @Published var isCorrect: Bool = false
     @Published var showFirework: Bool = false
     @Published var failedAttempts: Int = 0
+    @Published var correctCnt: Int = 0
+    
     private var history: [Int] = []
     
     init() {
@@ -45,6 +47,7 @@ class BaseViewModel<T: Identifiable>: ObservableObject {
             let generator = UINotificationFeedbackGenerator()
             generator.notificationOccurred(.success)
             failedAttempts = 0
+            correctCnt += 1
         } else {
             failedAttempts += 1
         }

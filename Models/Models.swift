@@ -17,6 +17,7 @@ struct Sentence: Identifiable {
 struct Noun: Identifiable {
     let id = UUID()
     let meaning: String
+    let singWord: String
     let fullWord: String
     let plural: String
     let gender: String

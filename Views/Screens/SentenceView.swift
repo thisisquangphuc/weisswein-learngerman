@@ -179,74 +179,7 @@ struct SentenceView: View {
                         .background(Color.gray)
                         .position(x: 200, y:85)
                 }
-                ZStack {
-//                    Button(action: {
-//                        //                    showingFileImporter = true
-//                        showingTypeSelection = true
-//                    }) {
-//                        Label("Import CSV", systemImage: "square.and.arrow.down")
-//                            .font(.caption)
-//                            .padding(5)
-//                            .background(Color.green)
-//                            .foregroundColor(.white)
-//                            .cornerRadius(5)
-//                    }
-//                    .position(x: 65, y: 65) // Move the button closer to the top-left corner
-//                    .confirmationDialog("Select File Type", isPresented: $showingTypeSelection, titleVisibility: .visible) {
-//                        Button("Verb") {
-//                            selectedFileType = "verbs"
-//                            showingFileImporter = true
-//                        }
-//                        Button("Sentence") {
-//                            selectedFileType = "GerSentences"
-//                            showingFileImporter = true
-//                        }
-//                        Button("Noun") {
-//                            selectedFileType = "nouns"
-//                            showingFileImporter = true
-//                        }
-//                        Button("Note") {
-//                            selectedFileType = "note"
-//                            showingFileImporter = true
-//                        }
-//                        Button("Cancel", role: .cancel) {}
-//                    }
-//                    .fileImporter(isPresented: $showingFileImporter, allowedContentTypes: [.commaSeparatedText]) { result in
-//                        do {
-//                            let selectedFile = try result.get()
-//                            let fileName = "\(selectedFileType).csv"  // Use the selected file type for the name
-//                            
-//                            // Check if the Resource folder exists or create it if necessary
-//                            if let resourceFolderURL = Bundle.main.url(forResource: selectedFileType, withExtension: "csv") {
-//                                // Check if the file exists at the given path
-//                                if !FileManager.default.fileExists(atPath: resourceFolderURL.path) {
-//                                    print("File does not exist at path: \(resourceFolderURL.path)")
-//                                    return
-//                                }
-//                                
-//                                // Overwrite the existing file at resourceFolderURL if it exists
-//                                if FileManager.default.fileExists(atPath: resourceFolderURL.path) {
-//                                    do {
-//                                        try FileManager.default.removeItem(at: resourceFolderURL)
-//                                        // Proceed with copying the new file
-//                                    } catch {
-//                                        print("Failed to remove the existing file: \(error)")
-//                                    }
-//                                }
-//                                
-//                                // Copy the new file to the Resource folder
-//                                try FileManager.default.copyItem(at: selectedFile, to: resourceFolderURL)
-//                                viewModel.loadCSV()
-//                                print("\(fileName) imported successfully to Resource/ and overwritten!")
-//                            } else {
-//                                print("Resource folder URL is invalid.")
-//                            }
-//                        } catch {
-//                            print("Failed to import file: \(error)")
-//                        }
-//                    }
-                    
-                    
+                ZStack {                    
                     if viewModel.failedAttempts >= 1 {
                         Button(action: {
                             showingHint = true
