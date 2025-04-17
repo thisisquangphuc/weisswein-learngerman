@@ -15,6 +15,13 @@ class NounViewModel: BaseViewModel<Noun>  {
     @State  var shakeTrigger: CGFloat = 0
     
     private var history: [Int] = []
+    @Published var floatingWords: [FloatingWord] = []
+
+    struct FloatingWord: Identifiable {
+        let id = UUID()
+        let text: String
+        let position: CGPoint
+    }
 
     override init() {
         super.init()
@@ -87,10 +94,10 @@ class NounViewModel: BaseViewModel<Noun>  {
             let generator = UINotificationFeedbackGenerator()
             generator.notificationOccurred(.success)
             failedAttempts = 0
-            showFirework = true // Trigger animation
-            DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
-                self.showFirework = false // Hide after 1 second
-            }
+//            showFirework = true // Trigger animation
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
+//                self.showFirework = false // Hide after 1 second
+//            }
         } else {
             failedAttempts += 1
 //            shake(duration: 1.0)
@@ -156,5 +163,22 @@ class NounViewModel: BaseViewModel<Noun>  {
         }
     }
     
+    func showFloatingWords(with positions: [CGPoint]) {
+        floatingWords.removeAll()
+
+        let fixedPositions = positions
+        let baseText = items[currentIndex].fullWord
+
+        for (i, position) in fixedPositions.enumerated() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(i) * 0.5) {
+                let word = FloatingWord(text: baseText, position: position)
+                self.floatingWords.append(word)
+            }
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            self.floatingWords.removeAll()
+        }
+    }
     
 }

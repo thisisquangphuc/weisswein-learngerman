@@ -48,7 +48,6 @@ struct NounView: View {
             
             ZStack {
                 ZStack {
-                 
                     VStack {
                         Text(viewModel.items[viewModel.currentIndex].fullWord)
                             .font(.title)
@@ -114,12 +113,22 @@ struct NounView: View {
                 Spacer()
             }
             .padding()
+            ForEach(viewModel.floatingWords) { floating in
+                Text(floating.text)
+                    .font(.system(size: 30, weight: .bold))
+                    .foregroundColor(viewModel.getCustomTextColor())
+                    .position(x: UIScreen.main.bounds.width * floating.position.x,
+                              y: UIScreen.main.bounds.height * floating.position.y)
+                    .transition(.opacity)
+            }
             
             if viewModel.failedAttempts >= 1 {
+                
                 Button(action: {
                     showingHint = true
                     let word = viewModel.items[viewModel.currentIndex].singWord
                     fetchHintImage(for: word)
+                    print("DEBUG")
                 }) {
                     Image(systemName: "lightbulb.fill")
                         .padding(10)
@@ -157,12 +166,26 @@ struct NounView: View {
                 .padding()
             }
             .padding()
+            
         }
+        
     }
     
     private func callEffects() {
         if viewModel.isCorrect == true {
             congratsTrigger += 1
+            let fixedPositions: [CGPoint] = [
+                CGPoint(x: 0.3, y: 0.07), //top
+                CGPoint(x: 0.3, y: 0.65),
+                CGPoint(x: 0.6, y: 0.85),
+                CGPoint(x: 0.7, y: 0.6),
+                CGPoint(x: 0.35, y: 0.22), //top
+                CGPoint(x: 0.4, y: 0.75),
+                CGPoint(x: 0.8, y: 0.15), //top
+                CGPoint(x: 0.25, y: 0.18), //top
+                CGPoint(x: 0.7, y: 0.80)  //top
+            ]
+            viewModel.showFloatingWords(with: fixedPositions)
         } else {
             
         }
@@ -193,6 +216,7 @@ struct NounView: View {
                     .trimmingCharacters(in: .whitespacesAndNewlines)
 
                 if let finalURL = URL(string: cleanedURL) {
+                    print("DEBUG 2")
                     DispatchQueue.main.async {
                         self.hintImageURL = finalURL
                         self.showingImageHint = true
@@ -200,6 +224,7 @@ struct NounView: View {
                 }
             } else {
                 // Fallback in case no image is found
+                print("Fallback in case no image is found")
                 DispatchQueue.main.async {
                     self.hintImageURL = nil
                     self.showingImageHint = true
