@@ -1,6 +1,38 @@
+# Weisswein App - Learn German (White Wine) 🍷
 
-*   **Simulation folder**: This folder contains the simulation data, including the simulation results, input files
+A beautiful and educational iOS app for learning German with interactive exercises.
 
-/Users/phuc/Library/Developer/CoreSimulator/Devices/D589556E-3473-42AF-A818-F76A3799D62B/data/Containers/Shared/AppGroup/FCED73D1-6247-40D0-B3A6-D3789C1BF22A
+![screenshot](screenshots/verb_ok3.png)
+
+---
+
+## 🚀 Features
+
+- ✍️ Sentence tile assembly game
+- 📚 Vocabulary by categories (Nouns, Verbs, Sentences)
+- 📤 CSV Import with your own words set
+
+---
+
+## 🖼️ Screenshots
+
+| Screen | Home | Check | Hint |
+|------|------|------|------|
+| Sentence | ![](screenshots/sentence.png) | ![](screenshots/sentence_ok.png) | ![](screenshots/sentence_hint.png) |
+| Noun |![](screenshots/Noun.png)| ![](screenshots/noun_ok.png)||
+| Verb | ![](screenshots/verb_2.png) | ![](screenshots/verb_ok3.png) ||
+| Puzzel |![](screenshots/puzzel_progress.png)|![](screenshots/puzzel_full.png)|
+
+---
+
+## 🛠 Setup & Run
+
+### 📦 Requirements
+- Xcode 15+
+- Swift 5.9+
+- iOS 16+
+
+
+
 
 
